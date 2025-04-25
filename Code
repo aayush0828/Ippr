@@ -1,0 +1,143 @@
+Sure! Below are MATLAB code snippets for each of the 10 image processing tasks you mentioned. Each snippet is short and explained in comments.
+
+⸻
+
+1. Grayscale Images & Display of Grayscale Images
+
+img = imread('your_image.jpg');     % Load image
+gray_img = rgb2gray(img);           % Convert to grayscale
+imshow(gray_img);                   % Display grayscale image
+title('Grayscale Image');
+
+
+
+⸻
+
+2. Flipped Image
+
+img = imread('your_image.jpg');
+gray_img = rgb2gray(img);
+
+flipped_img = flip(gray_img, 2);    % Flip horizontally
+imshow(flipped_img);
+title('Horizontally Flipped Image');
+
+
+
+⸻
+
+3. Enhance Contrast using Histogram Equalization
+
+img = imread('your_image.jpg');
+gray_img = rgb2gray(img);
+
+enhanced_img = histeq(gray_img);    % Histogram equalization
+imshow(enhanced_img);
+title('Contrast Enhanced Image');
+
+
+
+⸻
+
+4. Image Enhancement
+
+img = imread('your_image.jpg');
+gray_img = rgb2gray(img);
+
+sharp_img = imsharpen(gray_img);    % Sharpen image
+imshow(sharp_img);
+title('Sharpened Image');
+
+
+
+⸻
+
+5. Image Compression
+
+img = imread('your_image.jpg');
+
+imwrite(img, 'compressed.jpg', 'jpg', 'Quality', 20); % Compress and save
+compressed_img = imread('compressed.jpg');
+imshow(compressed_img);
+title('Compressed Image');
+
+
+
+⸻
+
+6. Edge Detection
+
+img = imread('your_image.jpg');
+gray_img = rgb2gray(img);
+
+edges = edge(gray_img, 'Canny');    % Canny edge detector
+imshow(edges);
+title('Edge Detected Image');
+
+
+
+⸻
+
+7. Image Segmentation
+
+img = imread('your_image.jpg');
+gray_img = rgb2gray(img);
+
+threshold = graythresh(gray_img);   % Otsu's threshold
+binary_img = imbinarize(gray_img, threshold);
+imshow(binary_img);
+title('Segmented Image');
+
+
+
+⸻
+
+8. Image Morphology
+
+img = imread('your_image.jpg');
+gray_img = rgb2gray(img);
+binary_img = imbinarize(gray_img);
+
+se = strel('disk', 5);              % Structuring element
+morph_img = imclose(binary_img, se);% Morphological closing
+imshow(morph_img);
+title('Morphologically Processed Image');
+
+
+
+⸻
+
+9. Pattern Recognition (Basic Template Matching)
+
+img = rgb2gray(imread('your_image.jpg'));
+template = rgb2gray(imread('template.jpg'));
+
+c = normxcorr2(template, img);      % Normalized cross-correlation
+[max_c, imax] = max(abs(c(:)));
+[ypeak, xpeak] = ind2sub(size(c), imax);
+
+figure, imshow(img);
+title('Pattern Recognition - Template Match');
+hold on;
+rectangle('Position', [xpeak - size(template,2), ypeak - size(template,1), size(template,2), size(template,1)], ...
+          'EdgeColor','r', 'LineWidth', 2);
+
+
+
+⸻
+
+10. Face Detection
+
+img = imread('your_image.jpg');
+faceDetector = vision.CascadeObjectDetector();
+
+bbox = step(faceDetector, img);     % Detect faces
+detectedImg = insertObjectAnnotation(img, 'rectangle', bbox, 'Face');
+imshow(detectedImg);
+title('Detected Face(s)');
+
+
+
+⸻
+
+Let me know if you want the outputs visualized, code in Python, or a GUI-based version for any of these.
